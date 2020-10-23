@@ -7,6 +7,14 @@ export default function Signin() {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isValid, setIsValid] = useState(true);
+
+  function validation() {
+    if (emailAddress === "" || password === "") {
+      setIsValid(false);
+    }
+  }
+
   function handleSignin(event) {
     event.preventDefault();
     // call in here to firebase to authenticate the user
