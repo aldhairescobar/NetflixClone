@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { GlobalStyles } from "./global-styles";
 import { App } from "./app";
 import { FirebaseContext } from "./context/firebase";
+//import { seedDatabase } from "./seed";
 
 const REACT_APP_MESSAGING_SENDER_ID = process.env.REACT_APP_MESSAGING_SENDER_ID;
 const REACT_APP_APP_ID = process.env.REACT_APP_APP_ID;
@@ -19,6 +20,7 @@ const config = {
 };
 
 const firebase = window.firebase.initializeApp(config);
+//seedDatabase(firebase);
 
 ReactDOM.render(
   <>
