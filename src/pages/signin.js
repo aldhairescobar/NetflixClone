@@ -21,13 +21,12 @@ export default function Signin() {
     firebase
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
-      .then(() => {
+      .then(() => history.push(ROUTES.BROWSE))
+      .catch((error) => {
         setEmailAddress("");
         setPassword("");
-        setError("");
-        history.push(ROUTES.BROWSE);
-      })
-      .catch((error) => setError(error.message));
+        setError(error.message);
+      });
   }
 
   return (
