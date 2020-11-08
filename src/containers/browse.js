@@ -6,7 +6,7 @@ import { FirebaseContext } from "../context/firebase";
 import { SelectProfileContainer } from "./profiles";
 import { FooterContainer } from "./footer";
 
-export function BrowseContainer({ slides }) {
+export function BrowseContainer({ slides, user }) {
   const [category, setCategory] = useState("series");
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
@@ -15,10 +15,12 @@ export function BrowseContainer({ slides }) {
 
   const { firebase } = useContext(FirebaseContext);
 
-  const user = {
+  const { displayName, photoURL } = user;
+
+  /* const user = {
     displayName: "Guest",
     photoURL: "2",
-  };
+  }; */
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,7 +48,7 @@ export function BrowseContainer({ slides }) {
 
   return profile.displayName ? (
     <>
-      {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+      {loading ? <Loading src={photoURL} /> : <Loading.ReleaseBody />}
       <Header src="joker1" dontShowOnSmallViewPort>
         <Header.Frame>
           <Header.Group>
@@ -74,11 +76,11 @@ export function BrowseContainer({ slides }) {
               setSearchTerm={setSearchTerm}
             />
             <Header.Profile>
-              <Header.Picture src={user.photoURL} />
+              <Header.Picture src={photoURL} />
               <Header.Dropdown>
                 <Header.Group>
-                  <Header.Picture src={user.photoURL} />
-                  <Header.Link>{user.displayName}</Header.Link>
+                  <Header.Picture src={photoURL} />
+                  <Header.Link>{displayName}</Header.Link>
                 </Header.Group>
                 <Header.Group>
                   <Header.Link onClick={() => firebase.auth().signOut()}>
